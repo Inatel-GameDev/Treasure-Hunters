@@ -6,20 +6,18 @@ public class PlayerAttack : MonoBehaviour
 {
     //Reconhecimento do ataque do personagem
 
-    public int danoDoAtaque = 1;
-    public EnemyHealth enemyHealth;
+    public PlayerController player;
 
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Verifica se o Collider atingiu um inimigo
-        if (other.CompareTag("Enemy"))
+        if (collision != null)
         {
-            // Causa dano ao inimigo (ajuste a quantidade de dano conforme necessário)
-            if (enemyHealth != null)
+            if (collision.CompareTag("Enemy"))
             {
-                enemyHealth.TakeDamage(danoDoAtaque);
+                player.ApplyDamage(collision.GetComponent<Enemy>());
+
             }
+
         }
     }
 }

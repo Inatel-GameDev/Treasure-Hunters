@@ -22,10 +22,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float speed;
     [SerializeField] public int life;
     [SerializeField] public int coins;
+    [SerializeField] public int damage;
     [SerializeField] public int jumpForce;
     [SerializeField] public int doubleJump = 1;
     [SerializeField] public bool turnRight;
     [SerializeField] public static float move;
+    public float knockbackForce = 5f; // Força do knockback
+    public float knockbackDuration = 0.5f; // Duração do knockback
 
     [Header("Layers")]
     [SerializeField] private LayerMask groundLayer;
@@ -35,7 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animationController = GetComponent<PlayerAnimationController>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = GetComponent<SpriteRenderer>(); 
     }
 
 
@@ -54,6 +57,7 @@ public class PlayerController : MonoBehaviour
     void PlayerMovement()
     {
         move = Input.GetAxis("Horizontal");
+        isMoving = true;
 
         // Verifica se o jogador pode se mover
         if (!isAttacking && isMoving)
@@ -77,6 +81,7 @@ public class PlayerController : MonoBehaviour
         {
             // Se está atacando, define a velocidade do jogador como zero
             rb.velocity = new Vector2(0, rb.velocity.y);
+            isMoving = false;
         }
     }
 
@@ -135,6 +140,11 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(AttackCooldown());
         }
+    }
+
+    public void ApplyDamage(Enemy en)
+    {
+        en.perdeVida(damage);
     }
 
     IEnumerator AttackCooldown()
