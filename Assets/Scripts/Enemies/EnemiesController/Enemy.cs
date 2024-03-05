@@ -64,10 +64,10 @@ public abstract class Enemy : MonoBehaviour
         Debug.Log("deu dano no player");
     }
 
-    public virtual void perdeVida(int n)
+    public virtual void perdeVida(int dano)
     {
         beingAttacked = true;
-        vida -= n;
+        vida -= dano;
         animator.play_animation(animation_hit);
         speed = 0;
         Debug.Log("Tomou dano");
@@ -89,12 +89,17 @@ public abstract class Enemy : MonoBehaviour
 
     public void StopbeingAttacked()
     {
-        beingAttacked=false;
+        beingAttacked = false;
         speed = speedInitial;
     }
 
     private void destroy()
     {
-        Destroy(gameObject);
+        Destroy(gameObject, 0.1f);
+    }
+
+    private void StarDash()
+    {
+        speed = 20;
     }
 }

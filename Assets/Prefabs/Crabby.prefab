@@ -403,9 +403,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  speed: 2
-  speedInitial: 2
-  vida: 2
+  speed: 1.5
+  speedInitial: 1.5
+  vida: 3
   dano: 1
   playerH: {fileID: 0}
   rig: {fileID: 5071082997357288950}
