@@ -5499,6 +5499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1726166274}
   - component: {fileID: 1726166275}
+  - component: {fileID: 1726166276}
   m_Layer: 5
   m_Name: HeartController
   m_TagString: Untagged
@@ -5555,6 +5556,27 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1726166276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726166273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3dfe4b685a4304e99aceaebfb318de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: {fileID: 1812355495}
+  maxLife: 4
+  coracao:
+  - {fileID: 486448201}
+  - {fileID: 74211584}
+  - {fileID: 1659305996}
+  - {fileID: 629927318}
+  cheio: {fileID: 21300000, guid: 94b85771d7e9d2e44b9568ba65372a70, type: 3}
+  vazio: {fileID: 21300000, guid: 7de02aec365fa0641adea53fd4609901, type: 3}
 --- !u!4 &1745018725 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8677309229583148961, guid: 458b0eada2f1674479bc581d5116f702, type: 3}
@@ -5866,15 +5888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 4
   player: {fileID: 1812355495}
-  enemy: {fileID: 0}
   playerAnimationController: {fileID: 1812355502}
-  coracao:
-  - {fileID: 486448201}
-  - {fileID: 74211584}
-  - {fileID: 1659305996}
-  - {fileID: 629927318}
-  cheio: {fileID: 21300000, guid: 94b85771d7e9d2e44b9568ba65372a70, type: 3}
-  vazio: {fileID: 21300000, guid: 7de02aec365fa0641adea53fd4609901, type: 3}
 --- !u!114 &1812355502
 MonoBehaviour:
   m_ObjectHideFlags: 0

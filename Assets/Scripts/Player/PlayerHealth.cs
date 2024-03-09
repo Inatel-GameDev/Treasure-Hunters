@@ -10,12 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxLife = 4;
 
     public PlayerController player;
-    public Enemy enemy;
     public PlayerAnimationController playerAnimationController;
-
-    public Image[] coracao;
-    public Sprite cheio;
-    public Sprite vazio;
 
     //public float knockbackForce = 5f; // Força do knockback
     //public float knockbackDuration = 0.5f; // Duração do knockback
@@ -28,41 +23,6 @@ public class PlayerHealth : MonoBehaviour
         Physics2D.IgnoreLayerCollision(8, 7, false);
     }
 
-    void Update()
-    {
-        lifeBar();
-    }
-
-    void lifeBar()
-    {
-        for (int i = 0; i < coracao.Length; i++)
-        {
-            if (player.life > maxLife)
-            {
-                player.life = maxLife;
-            }
-
-            if (i < player.life)
-            {
-                coracao[i].sprite = cheio;
-            }
-            else
-            {
-                coracao[i].sprite = vazio;
-            }
-
-            if (i < maxLife)
-            {
-                coracao[i].enabled = true;
-            }
-            else
-            {
-                coracao[i].enabled = false;
-            }
-
-        }
-
-    }
 
     public void TakeDamage(int dano)
     {

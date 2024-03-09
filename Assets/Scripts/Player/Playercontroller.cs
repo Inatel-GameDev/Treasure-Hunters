@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public SpriteRenderer sprite;
     private PlayerAnimationController animationController;
+    public UI_manager UI;
 
     [Header("Controll")]
     public bool inGround;
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animationController = GetComponent<PlayerAnimationController>();
-        sprite = GetComponent<SpriteRenderer>(); 
+        sprite = GetComponent<SpriteRenderer>();
     }
 
 
@@ -175,19 +176,15 @@ public class PlayerController : MonoBehaviour
     public void AddCoins()
     {
         coins++;
+        UI.CoinsAmaont(coins);
     }
 
-    public int GetCoins()
-    {
-        return coins;  // Retorna a quantidade de moedas
-    }
-
-    //public void addlife()
+    //public void loselife()
     //{
 
     //}
 
-    //public void loselife()
+    //public void addlife()
     //{
 
     //}
