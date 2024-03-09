@@ -12,14 +12,15 @@ public class UI_manager : MonoBehaviour
     public Sprite cheio;
     public Sprite vazio;
 
-    public Text coinText;  // Referência ao objeto Text que mostrará a quantidade de moedas
+    public Text coinText;
 
-    void Update()
+    void Start()
     {
-        lifeBar();
+        UpdateLifeBar();
     }
 
-    void lifeBar()
+    // Chama essa função sempre que precisar atualizar a barra de vida
+    public void UpdateLifeBar()
     {
         for (int i = 0; i < coracao.Length; i++)
         {
@@ -48,9 +49,9 @@ public class UI_manager : MonoBehaviour
         }
     }
 
-    public void CoinsAmaont(int c)
+    // Função para atualizar a quantidade de moedas
+    public void CoinsAmount(int c)
     {
-        // Atualiza o texto com a quantidade de moedas
         coinText.text = c.ToString();
     }
 }

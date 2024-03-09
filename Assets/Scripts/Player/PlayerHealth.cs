@@ -1,16 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxLife = 4;
 
     public PlayerController player;
     public PlayerAnimationController playerAnimationController;
+    public UI_manager UI;
 
     //public float knockbackForce = 5f; // Força do knockback
     //public float knockbackDuration = 0.5f; // Duração do knockback
@@ -19,7 +15,6 @@ public class PlayerHealth : MonoBehaviour
     {
         player = GetComponent<PlayerController>();
 
-        player.life = maxLife;
         Physics2D.IgnoreLayerCollision(8, 7, false);
     }
 
@@ -28,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Player took damage: " + dano);
         player.life -= dano;
+        UI.UpdateLifeBar();
         //ApplyKnockback();
         playerAnimationController.PlayAnimation("hit");
 
