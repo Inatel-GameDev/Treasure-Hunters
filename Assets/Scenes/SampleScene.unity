@@ -4698,6 +4698,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 395987657}
     m_Modifications:
     - target: {fileID: 5222976281696857396, guid: 5ff1e451c9882f74db5a22c2a696f313, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1812355495}
+    - target: {fileID: 5222976281696857396, guid: 5ff1e451c9882f74db5a22c2a696f313, type: 3}
       propertyPath: playerH
       value: 
       objectReference: {fileID: 1812355501}
@@ -4953,6 +4957,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7940340373008424615, guid: 76dc07d4e75a3c643a799ebe32113ef3, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1812355495}
     - target: {fileID: 7940340373008424615, guid: 76dc07d4e75a3c643a799ebe32113ef3, type: 3}
       propertyPath: playerH
       value: 
@@ -5630,6 +5638,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 395987657}
     m_Modifications:
     - target: {fileID: 1454038829752483281, guid: e3785a5477b037a4f8e22b53c68d5c5e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1812355495}
+    - target: {fileID: 1454038829752483281, guid: e3785a5477b037a4f8e22b53c68d5c5e, type: 3}
       propertyPath: playerH
       value: 
       objectReference: {fileID: 1812355501}
@@ -5726,6 +5738,7 @@ MonoBehaviour:
   isAttacking: 0
   speed: 5
   life: 0
+  maxLife: 4
   coins: 0
   damage: 1
   jumpForce: 11
@@ -5865,9 +5878,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a064706a2ed5b04682cce614f972ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 4
   player: {fileID: 1812355495}
   playerAnimationController: {fileID: 1812355502}
+  UI: {fileID: 2075948759}
 --- !u!114 &1812355502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6134,7 +6147,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p: {fileID: 1812355495}
   maxLife: 4
-  coracao: []
+  coracao:
+  - {fileID: 486448201}
+  - {fileID: 74211584}
+  - {fileID: 1659305996}
+  - {fileID: 629927318}
   cheio: {fileID: 21300000, guid: 94b85771d7e9d2e44b9568ba65372a70, type: 3}
   vazio: {fileID: 21300000, guid: 7de02aec365fa0641adea53fd4609901, type: 3}
   coinText: {fileID: 786733052}

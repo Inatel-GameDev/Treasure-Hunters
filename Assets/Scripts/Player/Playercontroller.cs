@@ -184,29 +184,6 @@ public class PlayerController : MonoBehaviour
         UI.CoinsAmount(coins);
     }
 
-    public void LoseLife(int damage)
-    {
-        if (life == 0)
-        {
-            Debug.Log("VOU MORRER");
-            // Reproduzir a animação de morte usando o PlayerAnimationController
-            animationController.PlayAnimation("deadHit");
-
-            // Parar o movimento e desabilitar o controle do jogador
-            DisableMovement();
-
-            // recarregar cena após um segundo
-            Invoke("LoadScene", 1f);
-        }
-        else
-        {
-            life -= damage;
-            Debug.Log("Vida atual:" + life);
-            UI.UpdateLifeBar();
-            animationController.PlayAnimation("hit");
-        }
-    }
-
     void LoadScene()
     {
         SceneManager.LoadScene("SampleScene");
