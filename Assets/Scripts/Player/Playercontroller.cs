@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -152,6 +153,11 @@ public class PlayerController : MonoBehaviour
     {
         en.perdeVida(damage);
     }
+
+    //public void DestroyTrap(Cannon c)
+    //{
+    //    c.perdeVida(damage);
+    //}
 
     IEnumerator AttackCooldown()
     {

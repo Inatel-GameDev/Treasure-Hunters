@@ -8,6 +8,7 @@ TagManager:
   - sword
   - Coin
   - Ground
+  - Trap
   layers:
   - Default
   - TransparentFX
