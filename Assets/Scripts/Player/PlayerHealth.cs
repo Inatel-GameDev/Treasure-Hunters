@@ -44,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
 
     void LoadScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Fase 1");
     }
 
     //private void ApplyKnockback()
