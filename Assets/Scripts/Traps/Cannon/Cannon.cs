@@ -4,34 +4,100 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
+    //Animator
+    public TrapsAnimations anim;
+
+    // A posição de onde as bolas de canhão serão lançadas
     public Transform firepoint;
+
+    // Prefab da bola de canhão
     public Ball ball;
-    float timeBetween;
+
+    // Tempo entre cada disparo
+    public float timeBetween;
+
+    // Tempo inicial entre disparos
     public float StartTimeBetween;
+
+    //Vida
+    public int vida;
+
+    // sinaliza que esta sendo atacado
+    public bool beingAttacked = false;
+
+    //sinaliza que esta destruido
+    private bool destroyed = false;
 
     void Start()
     {
+        // Inicializa o tempo entre disparos com o valor definido no Inspector
         timeBetween = StartTimeBetween;
+        anim = GetComponent<TrapsAnimations>();
     }
 
     void Update()
     {
-        if (timeBetween <= 0)
+        Attack();
+    }
+
+    public void Attack()
+    {
+        // Verifica se o tempo entre disparos chegou a zero
+        if (timeBetween <= 0 && !destroyed)
         {
-            Ball newBall = Instantiate(ball, firepoint.position, firepoint.rotation);
+            anim.PlayAnimation("CannonFire");
 
-            // Verifica a escala do canhão
-            if (transform.localScale.x < 0)
-            {
-                // Se o canhão estiver virado para a esquerda, inverte a escala da bola
-                newBall.transform.localScale = new Vector3(-1, 1, 1);
-            }
-
+            // Reinicia o tempo entre disparos
             timeBetween = StartTimeBetween;
         }
         else
         {
+            // Reduz o tempo entre disparos com base no tempo decorrido
             timeBetween -= Time.deltaTime;
         }
+    }
+
+    public void StopAttacking()
+    {
+        anim.PlayAnimation("CannonIdle");
+    }
+
+        public void StopbeingAttacked()
+    {
+        beingAttacked = false;
+        anim.PlayAnimation("CannonIdle");
+    }
+
+    public void NewBall()
+    {
+
+        // Instancia uma nova bola de canhão no firepoint (posição de lançamento)
+        Ball newBall = Instantiate(ball, firepoint.position, firepoint.rotation);
+
+        // Verifica a escala do canhão para determinar a direção da bola
+        if (transform.localScale.x < 0)
+        {
+            // Se o canhão estiver virado para a esquerda, inverte a escala da bola
+            newBall.transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
+    public void PerdeVida(int dano)
+    {
+        beingAttacked = true;   
+        vida -= dano;
+        anim.PlayAnimation("CannonHit");
+        StopAttacking();
+        if (vida <= 0)
+        {
+            destroyed = true;
+            anim.PlayAnimation("CannonDestroyed");
+            Destroy();
+        }
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject, 0.1f);
     }
 }

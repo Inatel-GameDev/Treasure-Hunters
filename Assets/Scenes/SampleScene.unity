@@ -325,6 +325,7 @@ MonoBehaviour:
   firepoint: {fileID: 314175207}
   ball: {fileID: 2797793683862562158, guid: 732e4214b4da2cd4e840a13953d2b42b, type: 3}
   StartTimeBetween: 2
+  vida: 2
 --- !u!4 &55975570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8677309229583148961, guid: 458b0eada2f1674479bc581d5116f702, type: 3}

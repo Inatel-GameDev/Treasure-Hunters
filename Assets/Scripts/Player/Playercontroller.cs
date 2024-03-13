@@ -154,10 +154,10 @@ public class PlayerController : MonoBehaviour
         en.perdeVida(damage);
     }
 
-    //public void DestroyTrap(Cannon c)
-    //{
-    //    c.perdeVida(damage);
-    //}
+    public void DestroyTrap(Cannon c)
+    {
+        c.PerdeVida(damage);
+    }
 
     IEnumerator AttackCooldown()
     {

@@ -17,11 +17,11 @@ public class PlayerAttack : MonoBehaviour
                 player.ApplyDamage(collision.GetComponent<Enemy>());
             }
 
-        //    else if (collision.CompareTag("Trap"))
-        //    {
-        //        player.DestroyTrap(collision.GetComponent<Trap>());
+            else if (collision.CompareTag("Trap"))
+            {
+                player.DestroyTrap(collision.GetComponent<Cannon>());
 
-        //    }
+            }
         }
     }
 }
