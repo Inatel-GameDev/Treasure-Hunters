@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public SpriteRenderer sprite;
-    private PlayerAnimationController animationController;
+    public PlayerAnimationController animationController;
     public UI_manager UI;
 
     [Header("Controll")]
@@ -29,8 +29,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public int doubleJump = 1;
     [SerializeField] public bool turnRight;
     [SerializeField] public static float move;
-    public float knockbackForce = 5f; // Força do knockback
-    public float knockbackDuration = 0.5f; // Duração do knockback
 
     [Header("Layers")]
     [SerializeField] private LayerMask groundLayer;
@@ -188,11 +186,6 @@ public class PlayerController : MonoBehaviour
     {
         coins++;
         UI.CoinsAmount(coins);
-    }
-
-    void LoadScene()
-    {
-        SceneManager.LoadScene("SampleScene");
     }
 }
 

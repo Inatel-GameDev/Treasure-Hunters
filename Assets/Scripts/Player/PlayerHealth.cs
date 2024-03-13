@@ -18,6 +18,11 @@ public class PlayerHealth : MonoBehaviour
         Physics2D.IgnoreLayerCollision(8, 7, false);
     }
 
+    private void Update()
+    {
+        Fall();
+    }
+
 
     public void TakeDamage(int dano)
     {
@@ -45,6 +50,14 @@ public class PlayerHealth : MonoBehaviour
     void LoadScene()
     {
         SceneManager.LoadScene("Fase 1");
+    }
+
+    void Fall()
+    {
+        if(player.transform.position.y < -10)
+        {
+            Invoke("LoadScene", 1f);
+        }
     }
 
     //private void ApplyKnockback()
