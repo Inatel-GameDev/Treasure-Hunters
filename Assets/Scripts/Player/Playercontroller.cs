@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public bool isAttacking = false;
     private bool canAttack = true; // Controla se o jogador pode atacar novamente
     private float attackCooldown = 0.6f; // Tempo de cooldown em segundos
+    public bool isPaused = false;
 
     [Header("Player Parameters")]
     [SerializeField] public float speed;
@@ -45,15 +46,18 @@ public class PlayerController : MonoBehaviour
     {
         life = maxLife;
         UI.UpdateLifeBar();
+        Time.timeScale = 1;
     }
 
     void FixedUpdate()
     {
+        if (isPaused) return;
         PlayerMovement();
     }
 
     private void Update()
     {
+        if (isPaused) return;
         PlayerAttack();
         PlayerJump();
     }
@@ -61,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
+
         move = Input.GetAxis("Horizontal");
         isMoving = true;
 
