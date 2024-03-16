@@ -34,11 +34,13 @@ public class PlayerHealth : MonoBehaviour
         UI.UpdateLifeBar();
         ApplyKnockback();
         playerAnimationController.PlayAnimation("hit");
+        AudioManager.Instance.PlaySFX("Hit1");
 
         if (player.life <= 0)
         {
             // Reproduzir a animação de morte usando o PlayerAnimationController
             playerAnimationController.PlayAnimation("deadHit");
+            AudioManager.Instance.PlaySFX("KO");
 
             // Parar o movimento e desabilitar o controle do jogador
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -59,6 +61,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if(player.transform.position.y < -10)
         {
+            AudioManager.Instance.PlaySFX("KO_Far");
             Invoke("LoadScene", 1f);
         }
     }

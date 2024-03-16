@@ -11,6 +11,7 @@ public class UI_manager : MonoBehaviour
     public Image[] coracao;
     public Sprite cheio;
     public Sprite vazio;
+    public Slider _musicSlider, _sfxSlider;
 
     public Text coinText;
 
@@ -54,4 +55,15 @@ public class UI_manager : MonoBehaviour
     {
         coinText.text = c.ToString();
     }
+
+    public void SFXVolume()
+    {
+        AudioManager.Instance.SFXVolume(_musicSlider.value);
+    }
+
+    public void MusicVolume()
+    {
+        AudioManager.Instance.MusicVolume(_musicSlider.value);
+    }
+
 }

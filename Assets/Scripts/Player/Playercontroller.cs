@@ -123,12 +123,14 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpForce;
             doubleJump = 1; // Redefina o contador apenas quando estiver no chão.
+            AudioManager.Instance.PlaySFX("Jump");
         }
         // pulo extra
         else if (Input.GetButtonDown("Jump") && !inGround && doubleJump > 0)
         {
             rb.velocity = Vector2.up * jumpForce;
             doubleJump--;
+            AudioManager.Instance.PlaySFX("Jump");
         }
 
         if (rb.velocity.y > 0 && !inGround)
@@ -147,6 +149,7 @@ public class PlayerController : MonoBehaviour
         {
             isAttacking = true;
             animationController.PlayAnimation("attack2");
+            AudioManager.Instance.PlaySFX("Attack1");
 
             StartCoroutine(AttackCooldown());
         }
