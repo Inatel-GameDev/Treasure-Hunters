@@ -6645,7 +6645,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1812355495}
   playerAnimationController: {fileID: 1812355502}
+  enemy: {fileID: 2142945629}
   UI: {fileID: 2075948759}
+  knockbackForce: 5
+  knockbackDuration: 0.5
 --- !u!114 &1812355502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7007,6 +7010,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7850608454975816242, guid: 76dc07d4e75a3c643a799ebe32113ef3, type: 3}
   m_PrefabInstance: {fileID: 1288865753}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2142945629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7940340373008424615, guid: 76dc07d4e75a3c643a799ebe32113ef3, type: 3}
+  m_PrefabInstance: {fileID: 1288865753}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88c96125d482d2f4b8ef84c47759146b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

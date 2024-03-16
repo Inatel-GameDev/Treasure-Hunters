@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
@@ -61,27 +64,23 @@ public abstract class Enemy : MonoBehaviour
     public void hurt_player()
     {
         playerH.TakeDamage(dano);
-        Debug.Log("deu dano no player");
     }
 
     public virtual void perdeVida(int dano)
     {
         beingAttacked = true;
+        speed = 0;
         vida -= dano;
         animator.play_animation(animation_hit);
-        speed = 0;
-        Debug.Log("Tomou dano");
 
         if (vida <= 0)
         {
-            Debug.Log("Mourreu");
             animator.play_animation(animation_dead);
         }
     }
 
     public void stop_attacking()
     {
-        Debug.Log("saiu do ataque");
         attacking = false;
         animator.play_animation(animation_running);
         speed = speedInitial;
