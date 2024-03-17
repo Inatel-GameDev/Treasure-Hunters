@@ -7,13 +7,13 @@ public class Ball : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed;
     [SerializeField] private int damage;
-    [SerializeField] private Cannon cannon;
+    [SerializeField] private Trap cannon;
     public PlayerHealth player;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerHealth>();
-        cannon = FindObjectOfType<Cannon>();
+        cannon = FindObjectOfType<Trap>();
 
         // Verifica a escala do canhão para determinar a direção da bola
         if (cannon.transform.localScale.x < 0)  // Canhão está virado para a direita

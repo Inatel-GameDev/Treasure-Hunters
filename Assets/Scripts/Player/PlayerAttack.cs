@@ -19,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
 
             else if (collision.CompareTag("Trap"))
             {
-                player.DestroyTrap(collision.GetComponent<Cannon>());
+                player.DestroyTrap(collision.GetComponent<Trap>());
 
             }
         }

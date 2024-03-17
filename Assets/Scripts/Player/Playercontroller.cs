@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
         en.perdeVida(damage);
     }
 
-    public void DestroyTrap(Cannon c)
+    public void DestroyTrap(Trap c)
     {
         c.PerdeVida(damage);
     }
