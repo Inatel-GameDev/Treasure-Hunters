@@ -21,8 +21,8 @@ TagManager:
   - Player
   - Camera
   - Parallax
-  - 
-  - 
+  - collectibles
+  - projectiles
   - 
   - 
   - 

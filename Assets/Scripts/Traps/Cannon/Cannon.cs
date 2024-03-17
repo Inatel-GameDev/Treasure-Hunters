@@ -12,4 +12,5 @@ public class Cannon : Trap
         animation_hit = "CannonHit";
         animation_dead = "CannonDestroyed";
     }
+
 }
