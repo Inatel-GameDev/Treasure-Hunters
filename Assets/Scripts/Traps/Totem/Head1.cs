@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Totem : Trap
+public class Head1 : Trap
 {
     private void Start()
     {

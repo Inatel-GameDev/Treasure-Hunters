@@ -7,16 +7,16 @@ public class Ball : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed;
     [SerializeField] private int damage;
-    [SerializeField] private Trap cannon;
+    [SerializeField] private Trap trap;
     public PlayerHealth player;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerHealth>();
-        cannon = FindObjectOfType<Trap>();
+        trap = FindObjectOfType<Trap>();
 
         // Verifica a escala do canhão para determinar a direção da bola
-        if (cannon.transform.localScale.x < 0)  // Canhão está virado para a direita
+        if (trap.transform.localScale.x < 0)  // Canhão está virado para a direita
         {
             // Acelera a bola para a direita
             rb.velocity = Vector2.right * speed;
@@ -25,7 +25,10 @@ public class Ball : MonoBehaviour
         {
             // Acelera a bola para a esquerda
             rb.velocity = Vector2.left * speed;
-        }    
+        }
+
+        // Inicia a contagem regressiva para destruir a bola após 2 segundos
+        StartCoroutine(DestroyAfterDelay(2f));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -33,8 +36,13 @@ public class Ball : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             player.TakeDamage(damage);
+            Destroy(gameObject); // Destroi a bola ao colidir com o jogador
         }
+    }
 
-        Destroy(gameObject);
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject); // Destroi a bola após o atraso especificado
     }
 }
