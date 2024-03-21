@@ -5,23 +5,31 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform player;
-    public float minX, maxX;
+    //public float minX, maxX;
     public float timeLerp;
+    public float maxYLimit;
+    public float minYLimit;
 
     void FixedUpdate()
     {
-        //fixando camera sempre em z = -10
+        // Define a nova posição da câmera
         Vector3 newPosition = player.position + new Vector3(0, 0, -10);
 
-        //altura da camera no eixo y (parte de baixo)
-        newPosition.y = 0.1f; //mudar dps q montar o cenario
+        // Mantém a câmera acima do maxYLimit
+        if (player.position.y > maxYLimit)
+        {
+            newPosition.y = player.position.y + 0.1f; // Adiciona uma pequena folga
+        }
+        // Limita a posição mínima da câmera no eixo Y
+        newPosition.y = Mathf.Max(newPosition.y, minYLimit);
 
-        //suavização da camera ( quanto menor mais lento )
+        // Suaviza o movimento da câmera
         newPosition = Vector3.Lerp(transform.position, newPosition, timeLerp);
 
-        transform.position = newPosition;
+        // Limita a posição da câmera no eixo X
+        //newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
 
-        //definindo os limites no eixo x
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), transform.position.y, transform.position.z);
+        // Atualiza a posição da câmera
+        transform.position = newPosition;
     }
 }
