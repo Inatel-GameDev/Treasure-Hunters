@@ -17,36 +17,28 @@ public class UI_manager : MonoBehaviour
 
     void Start()
     {
+        // Carrega os valores dos sliders de volume salvos
+        LoadVolumeSettings();
+
         UpdateLifeBar();
     }
 
     // Chama essa função sempre que precisar atualizar a barra de vida
     public void UpdateLifeBar()
     {
+        // Se p.life for maior que maxLife, ajusta para maxLife
+        if (p.life > maxLife)
+        {
+            p.life = maxLife;
+        }
+
         for (int i = 0; i < coracao.Length; i++)
         {
-            if (p.life > maxLife)
-            {
-                p.life = maxLife;
-            }
+            // Define o sprite do coração como cheio se estiver dentro da vida do jogador, caso contrário, vazio
+            coracao[i].sprite = (i < p.life) ? cheio : vazio;
 
-            if (i < p.life)
-            {
-                coracao[i].sprite = cheio;
-            }
-            else
-            {
-                coracao[i].sprite = vazio;
-            }
-
-            if (i < maxLife)
-            {
-                coracao[i].enabled = true;
-            }
-            else
-            {
-                coracao[i].enabled = false;
-            }
+            // Habilita ou desabilita o coração de acordo com o máximo de vida
+            coracao[i].enabled = (i < maxLife);
         }
     }
 
@@ -56,14 +48,30 @@ public class UI_manager : MonoBehaviour
         coinText.text = c.ToString();
     }
 
+    // Função para salvar os valores dos sliders de volume
+    private void SaveVolumeSettings()
+    {
+        PlayerPrefs.SetFloat("MusicVolume", _musicSlider.value);
+        PlayerPrefs.SetFloat("SFXVolume", _sfxSlider.value);
+        PlayerPrefs.Save(); // Salva as alterações
+    }
+
+    // Função para carregar os valores dos sliders de volume
+    private void LoadVolumeSettings()
+    {
+        _musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f); // Valor padrão: 0.5f
+        _sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f); // Valor padrão: 0.5f
+    }
+
     public void SFXVolume()
     {
-        AudioManager.Instance.SFXVolume(_musicSlider.value);
+        AudioManager.Instance.SFXVolume(_sfxSlider.value);
+        SaveVolumeSettings(); // Salva o valor do slider de SFX
     }
 
     public void MusicVolume()
     {
         AudioManager.Instance.MusicVolume(_musicSlider.value);
+        SaveVolumeSettings(); // Salva o valor do slider de música
     }
-
 }
