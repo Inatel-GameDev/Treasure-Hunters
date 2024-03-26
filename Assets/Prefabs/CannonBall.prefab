@@ -129,7 +129,8 @@ MonoBehaviour:
   rb: {fileID: 9034951080964118987}
   speed: 10
   damage: 1
-  cannon: {fileID: 0}
+  trap: {fileID: 0}
+  time: 4
   player: {fileID: 0}
 --- !u!58 &-2136301034951131474
 CircleCollider2D:

@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private int damage;
     [SerializeField] private Trap trap;
+    [SerializeField] private float time;
     public PlayerHealth player;
 
     private void Start()
@@ -28,7 +29,7 @@ public class Ball : MonoBehaviour
         }
 
         // Inicia a contagem regressiva para destruir a bola após 2 segundos
-        StartCoroutine(DestroyAfterDelay(2f));
+        StartCoroutine(DestroyAfterDelay(time));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -36,6 +37,11 @@ public class Ball : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             player.TakeDamage(damage);
+            Destroy(gameObject); // Destroi a bola ao colidir com o jogador
+        }
+
+        if (other.CompareTag("Ground"))
+        {
             Destroy(gameObject); // Destroi a bola ao colidir com o jogador
         }
     }

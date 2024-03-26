@@ -174,5 +174,6 @@ MonoBehaviour:
   rb: {fileID: 3652630481806748481}
   speed: 30
   damage: 2
-  cannon: {fileID: 0}
+  trap: {fileID: 0}
+  time: 4
   player: {fileID: 0}
