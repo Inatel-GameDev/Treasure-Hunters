@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
 
-    public string scene;
+    [SerializeField]public string scene;
     public GameObject optionsPanel;
 
     // Start is called before the first frame update

@@ -24,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
     private void Update()
     {
         Fall();
+        enemy = FindObjectOfType<Enemy>();
     }
 
 
@@ -32,9 +33,10 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player took damage: " + dano);
         player.life -= dano;
         UI.UpdateLifeBar();
-        ApplyKnockback();
         playerAnimationController.PlayAnimation("hit");
         AudioManager.Instance.PlaySFX("Hit1");
+
+        if(enemy != null) { ApplyKnockback(); }
 
         if (player.life <= 0)
         {
