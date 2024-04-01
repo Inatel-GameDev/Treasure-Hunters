@@ -15,11 +15,14 @@ public class UI_manager : MonoBehaviour
 
     public Text coinText;
 
-    void Start()
+    private void Awake()
     {
         // Carrega os valores dos sliders de volume salvos
         LoadVolumeSettings();
+    }
 
+    void Start()
+    {
         UpdateLifeBar();
     }
 
@@ -49,12 +52,14 @@ public class UI_manager : MonoBehaviour
     }
 
     // Função para salvar os valores dos sliders de volume
+    // Função para salvar os valores dos sliders de volume
     private void SaveVolumeSettings()
     {
         PlayerPrefs.SetFloat("MusicVolume", _musicSlider.value);
         PlayerPrefs.SetFloat("SFXVolume", _sfxSlider.value);
         PlayerPrefs.Save(); // Salva as alterações
     }
+
 
     // Função para carregar os valores dos sliders de volume
     private void LoadVolumeSettings()

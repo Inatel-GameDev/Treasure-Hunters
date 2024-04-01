@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
 
     public float knockbackForce = 5f; // Força do knockback
     public float knockbackDuration = 0.5f; // Duração do knockback
+    private bool hasFallen = false;
 
     private void Start()
     {
@@ -30,13 +31,22 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int dano)
     {
+        // Se o jogador já caiu, não faz nada
+        if (hasFallen)
+        {
+            return;
+        }
+
         Debug.Log("Player took damage: " + dano);
         player.life -= dano;
         UI.UpdateLifeBar();
         playerAnimationController.PlayAnimation("hit");
         AudioManager.Instance.PlaySFX("Hit1");
 
-        if(enemy != null) { ApplyKnockback(); }
+        if (enemy != null)
+        {
+            ApplyKnockback();
+        }
 
         if (player.life <= 0)
         {
@@ -61,9 +71,16 @@ public class PlayerHealth : MonoBehaviour
 
     void Fall()
     {
-        if(player.transform.position.y < -10)
+        // Se o jogador já caiu, não faz nada
+        if (hasFallen)
+        {
+            return;
+        }
+
+        if (player.transform.position.y < -10)
         {
             AudioManager.Instance.PlaySFX("KO_Far");
+            hasFallen = true; // Define a variável de controle como verdadeira para indicar que o jogador caiu
             Invoke("LoadScene", 1f);
         }
     }
