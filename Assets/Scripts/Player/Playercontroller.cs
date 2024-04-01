@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool turnRight;
     [SerializeField] public static float move;
 
+    [Header("Pause Menu")]
+    public GameObject pauseMenu;
+
     [Header("Layers")]
     [SerializeField] private LayerMask groundLayer;
 
@@ -57,11 +60,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        MenuInput();
         if (isPaused) return;
         PlayerAttack();
         PlayerJump();
     }
-
 
     void PlayerMovement()
     {
@@ -95,7 +98,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     void SpriteFlip(float horizontal)
     {
         // Obtém a escala atual do jogador
@@ -112,7 +114,6 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(playerScale.x), playerScale.y, playerScale.z);
         }
     }
-
 
     void PlayerJump()
     {
@@ -178,7 +179,6 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
     }
 
-
     //funções para habilitar e desabilitar o movimento
     public void EnableMovement()
     {
@@ -194,6 +194,47 @@ public class PlayerController : MonoBehaviour
     {
         coins++;
         UI.CoinsAmount(coins);
+    }
+
+    public void MenuInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused) // Verifique se o player não é nulo antes de acessá-lo
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
+        pauseMenu.gameObject.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+
+        isPaused = false;
+        Time.timeScale = 1f;
+        pauseMenu.gameObject.SetActive(false);
+    }
+
+    public void Home()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
     }
 }
 

@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -16,9 +13,11 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        player = FindAnyObjectByType<PlayerController>();
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (player.isPaused)
+            if (player != null && player.isPaused) // Verifique se o player não é nulo antes de acessá-lo
             {
                 ResumeGame();
             }
@@ -31,14 +30,20 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        player.isPaused = true;
+        if (player != null) // Verifique se o player não é nulo antes de acessá-lo
+        {
+            player.isPaused = true;
+        }
         Time.timeScale = 0f;
         pauseMenu.gameObject.SetActive(true);
     }
 
     public void ResumeGame()
     {
-        player.isPaused = false;
+        if (player != null) // Verifique se o player não é nulo antes de acessá-lo
+        {
+            player.isPaused = false;
+        }
         Time.timeScale = 1f;
         pauseMenu.gameObject.SetActive(false);
     }
@@ -50,6 +55,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("Fase 1");
+        // Recarrega a cena atual
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
     }
 }
