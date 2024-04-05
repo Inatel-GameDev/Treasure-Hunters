@@ -17,7 +17,10 @@ public class UI_manager : MonoBehaviour
 
     private void Awake()
     {
-        // Carrega os valores dos sliders de volume salvos
+        _musicSlider.onValueChanged.AddListener(delegate { OnMusicVolumeChanged(); });
+        _sfxSlider.onValueChanged.AddListener(delegate { OnSFXVolumeChanged(); });
+
+        // Carrega as configurações de volume ao iniciar
         LoadVolumeSettings();
     }
 
@@ -62,11 +65,35 @@ public class UI_manager : MonoBehaviour
 
 
     // Função para carregar os valores dos sliders de volume
-    private void LoadVolumeSettings()
+    void LoadVolumeSettings()
     {
-        _musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f); // Valor padrão: 0.5f
-        _sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f); // Valor padrão: 0.5f
+        // Supondo que você salvou os volumes com as chaves "MusicVolume" e "SFXVolume"
+        float musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
+        // Ajusta os sliders para refletir os valores salvos
+        _musicSlider.value = musicVolume;
+        _sfxSlider.value = sfxVolume;
+
+        // Ajusta também o volume das AudioSource diretamente
+        AudioManager.Instance.musicSource.volume = musicVolume;
+        AudioManager.Instance.sfxSource.volume = sfxVolume;
     }
+
+    public void OnMusicVolumeChanged()
+    {
+        float volume = _musicSlider.value;
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+        AudioManager.Instance.musicSource.volume = volume;
+    }
+
+    public void OnSFXVolumeChanged()
+    {
+        float volume = _sfxSlider.value;
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+        AudioManager.Instance.sfxSource.volume = volume;
+    }
+
+
 
     public void SFXVolume()
     {
