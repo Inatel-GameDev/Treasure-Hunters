@@ -20,9 +20,23 @@ public class SceneController : MonoBehaviour
         }
     }
 
+
     public void NextLevel()
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        int proximoIndiceDeCena = SceneManager.GetActiveScene().buildIndex + 1;
+
+        // Salva o índice da próxima cena que será carregada
+        PlayerPrefs.SetInt("FaseAtual", proximoIndiceDeCena);
+
+        // Agora, carrega a próxima cena
+        SceneManager.LoadSceneAsync(proximoIndiceDeCena);
     }
 
+
+    void OnApplicationQuit() {
+        PlayerPrefs.DeleteKey("FaseAtual"); // Remove a fase salva ao fechar o jogo
+    }
+
+    // Adicione o restante do seu script aqui
 }
+

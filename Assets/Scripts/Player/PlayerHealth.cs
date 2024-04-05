@@ -66,8 +66,11 @@ public class PlayerHealth : MonoBehaviour
 
     void LoadScene()
     {
-        SceneManager.LoadScene("Fase 1");
+        // Tentar carregar o índice da cena salva, caso contrário, carrega a cena atual
+        int cenaSalvaIndex = PlayerPrefs.GetInt("FaseAtual", SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(cenaSalvaIndex);
     }
+
 
     void Fall()
     {
