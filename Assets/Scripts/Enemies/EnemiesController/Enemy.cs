@@ -24,11 +24,18 @@ public abstract class Enemy : MonoBehaviour
 
     void Update()
     {
-        Move();
+        // Verifica se o inimigo está vivo antes de permitir movimento
+        if (vida > 0)
+        {
+            Move();
+        }
     }
 
     public void Move()
     {
+        // Evitar que o inimigo se mova se estiver morto
+        if (vida <= 0) return;
+
         rig.velocity = new Vector2(direction * speed, rig.velocity.y);
 
         if (!attacking && !beingAttacked)
@@ -54,6 +61,9 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void attack()
     {
+        // Evitar que o inimigo ataque se estiver morto
+        if (vida <= 0) return;
+
         Debug.Log("atacando");
         attacking = true;
         animator.play_animation(animation_attacking);
@@ -63,6 +73,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void hurt_player()
     {
+        // Aplica dano ao jogador
         playerH.TakeDamage(dano);
     }
 
@@ -76,24 +87,34 @@ public abstract class Enemy : MonoBehaviour
         if (vida <= 0)
         {
             animator.play_animation(animation_dead);
+            // Garante que o inimigo seja destruído após a animação de morte
+            Invoke(nameof(destroy), 0.6f); // Ajuste o tempo conforme necessário
         }
     }
 
     public void stop_attacking()
     {
         attacking = false;
-        animator.play_animation(animation_running);
-        speed = speedInitial;
+        if (vida > 0)
+        {
+            animator.play_animation(animation_running);
+            speed = speedInitial;
+        }
     }
 
     public void StopbeingAttacked()
     {
         beingAttacked = false;
-        speed = speedInitial;
+        if (vida > 0)
+        {
+            speed = speedInitial;
+        }
     }
 
     private void destroy()
     {
-        Destroy(gameObject, 0.1f);
+        // Destroi o objeto do inimigo
+        Destroy(gameObject);
     }
+
 }
