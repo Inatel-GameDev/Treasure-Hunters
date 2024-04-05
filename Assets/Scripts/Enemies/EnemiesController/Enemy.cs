@@ -96,9 +96,4 @@ public abstract class Enemy : MonoBehaviour
     {
         Destroy(gameObject, 0.1f);
     }
-
-    private void StarDash()
-    {
-        speed = 20;
-    }
 }

@@ -13,4 +13,5 @@ public class Crabby : Enemy
         animation_hit = "crabby_hit";
         animation_dead = "crabby_dead_hit";
     }
+
 }

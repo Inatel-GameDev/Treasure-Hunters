@@ -14,4 +14,9 @@ public class Star : Enemy
         animation_hit = "PinkStarHit";
         animation_dead = "PinkStarDeadHit";
     }
+
+    private void StarDash()
+    {
+        speed = 20;
+    }
 }
