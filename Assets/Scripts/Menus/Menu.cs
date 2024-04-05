@@ -30,9 +30,11 @@ public class Menu : MonoBehaviour
     {
         //Editor da Unity
         UnityEditor.EditorApplication.isPlaying = false;
-
+        
         //Jogo Compilado
         //Application.Quit();
+        
+        PlayerPrefs.DeleteKey("TotalMoedas"); // Limpa o total de moedas ao sair
     }
 
     public void BackToMenu()

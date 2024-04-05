@@ -37,7 +37,6 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        Debug.Log("Player took damage: " + dano);
         player.life -= dano;
         UI.UpdateLifeBar();
         playerAnimationController.PlayAnimation("hit");

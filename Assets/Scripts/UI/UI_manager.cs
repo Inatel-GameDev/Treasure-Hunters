@@ -49,9 +49,9 @@ public class UI_manager : MonoBehaviour
     }
 
     // Função para atualizar a quantidade de moedas
-    public void CoinsAmount(int c)
+    public void CoinsAmount(int totalMoedas)
     {
-        coinText.text = c.ToString();
+        coinText.text = totalMoedas.ToString();
     }
 
     // Função para salvar os valores dos sliders de volume
