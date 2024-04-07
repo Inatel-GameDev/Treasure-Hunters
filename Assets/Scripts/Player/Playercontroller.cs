@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
 
     void PlayerAttack()
     {
-        if (Input.GetButtonDown("Fire1") && inGround && canAttack)
+        if ((Input.GetButtonDown("Fire1") && inGround && canAttack) || (Input.GetKeyDown(KeyCode.Return) && inGround && canAttack))
         {
             isAttacking = true;
             animationController.PlayAnimation("attack2");
